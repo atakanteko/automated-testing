@@ -4,7 +4,7 @@ const expect = require('chai').expect
 describe('My First Puppeteer Test',()=>{
     it('should launch the browser', async function() {
         const browser = await puppeteer.launch({
-            headless:true, 
+            headless:false, 
             slowMo:250
         })
         const page = await browser.newPage()
@@ -21,6 +21,13 @@ describe('My First Puppeteer Test',()=>{
         expect(url).to.include('devexpress.github.io')
         expect(text).to.be.a('string','I have tried TestCafe')
         expect(numOfParagraph).to.equal(9)
+
+        await page.goto('https://www.sahibinden.com/')
+        await page.waitForSelector('#searchText')
+        await page.type('#searchText','opel')
+        await page.keyboard.press('Enter', {delay:10})
+        await page.waitForTimeout(3000)
+
         await browser.close()
     })
 })
