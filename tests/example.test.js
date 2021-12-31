@@ -12,7 +12,7 @@ describe('My First Puppeteer Test',()=>{
         const text = await page.$eval('#tried-section > label',el => el.textContent)
         console.log('Text in the fieldset:', text);
         //eval with only one $ sign returns single element
-        const numOfParagraph = await page.$$eval('p',element => element)
+        const numOfParagraph = await page.$$eval('p',element => element.length)
         console.log('numOfParagraph in the div:', numOfParagraph);
 
         //eval with only one $$ sign returns multiple elements
