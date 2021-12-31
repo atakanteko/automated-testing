@@ -9,6 +9,8 @@ describe('My First Puppeteer Test',()=>{
         const title = await page.title();
         const url   = await page.url();
         console.log(`Title: ${title} Url: ${url}`);
+        const text = await page.$eval('#tried-section > label',el => el.textContent)
+        console.log('Text in the fieldset:', text);
         await browser.close()
     })
 })
