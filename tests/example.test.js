@@ -2,14 +2,25 @@ const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
 describe('My First Puppeteer Test',()=>{
-    it('should launch the browser', async function() {
-        const browser = await puppeteer.launch({
-            headless:true, 
+    let browser
+    let page
+
+    before(async function() {
+        browser = await puppeteer.launch({
+            headless:false, 
             slowMo:250,
 
         })
-        const page = await browser.newPage()
+        page = await browser.newPage()
         await page.setViewport({ width: 1280, height: 800 })
+    })
+
+    after(async function() {
+        await browser.close()
+    })
+
+    it('should launch the browser', async function() {
+        
         //await page.goto('https://devexpress.github.io/testcafe/example/')
 
         //const title = await page.title();
@@ -37,6 +48,6 @@ describe('My First Puppeteer Test',()=>{
         await page.type('#comments','Hello puppeteer!')
         await page.click('#submit-button')
         await page.waitForSelector('#submit-button',{hidden:true,timeout:3000})
-        await browser.close()
+        
     })
 })
