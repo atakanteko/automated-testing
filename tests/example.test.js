@@ -6,6 +6,7 @@ describe('My First Puppeteer Test',()=>{
         const page = await browser.newPage()
         await page.goto('https://www.youtube.com/')
         await page.waitForSelector('span')
+        await page.waitForTimeout(1000) // pausing the test 
         await browser.close()     
     })
 })
